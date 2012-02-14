@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>action</key>
+	<false/>
+	<key>background</key>
+	<true/>
+	<key>category</key>
+	<string>APPLESCRIPTS</string>
+	<key>command</key>
+	<string>on alfred_script(argv)
+	set q to argv as string	set command to word 1 of q
+	if (count words of q) &gt; 1 then		set option to text ((length of command) + 2) thru end of q
+	else
+		set option to ""
+	end if
+	setAdium(command, option)end alfred_scripton setAdium(command, option)	set Offline to {"offline", "0", "off"}	set Online to {"online", "1", "on"}	set Invisible to {"invisible", 4, "inv", "invis"}	set Away to {"away", "3", "a"}	set Available to {"available", "2", "ava", "avail", "back", "b"}		if command is in Away then		if length of option is greater than 0 then			tell application "Adium" to go away with message option		else			tell application "Adium" to go away with message "Away"		end if
+		do shell script "open -a ScreenSaverEngine"	else if command is in Offline then		tell application "Adium" to go offline	else if command is in Online then		tell application "Adium" to go online	else if command is in Invisible then		tell application "Adium" to go invisible	else if command is in Available then		tell application "Adium" to go available	end ifend setAdium</string>
+	<key>disabled</key>
+	<false/>
+	<key>keyword</key>
+	<string>adium</string>
+	<key>parameter</key>
+	<integer>0</integer>
+	<key>subtitle</key>
+	<string>Perform adium actions from Alfred</string>
+	<key>title</key>
+	<string>Adium Controller</string>
+</dict>
+</plist>
